@@ -1,7 +1,7 @@
 import { CHANGE_CURRENT_NOTE } from "../Actions/actionTypes";
 
 const initialState = {
-  currentNote: { noteName: "", cents: "", freq: "", octave: "" }
+  currentNote: { noteName: "", cents: "", freq: "", octave: "" },
 };
 
 export const NoteListener = (state = initialState, action) => {
@@ -9,7 +9,7 @@ export const NoteListener = (state = initialState, action) => {
     case CHANGE_CURRENT_NOTE:
       return {
         ...state,
-        currentNote: action.currentNote
+        currentNote: action.currentNote,
       };
     default:
       return state;

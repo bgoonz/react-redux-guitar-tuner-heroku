@@ -8,7 +8,7 @@ import {
   NoteName,
   Octave,
   Cents,
-  Frequency
+  Frequency,
 } from "./styles";
 
 import RangeBar from "../../components/RangeBar";
@@ -33,8 +33,8 @@ class Tuner extends Component {
   }
 }
 
-const mapStateToProps = store => ({
-  currentNote: store.noteReducer.currentNote
+const mapStateToProps = (store) => ({
+  currentNote: store.noteReducer.currentNote,
 });
 
 export default connect(mapStateToProps)(Tuner);

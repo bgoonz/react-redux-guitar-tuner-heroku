@@ -20,15 +20,15 @@ const noteStrings = [
   "G♯",
   "A",
   "A♯",
-  "B"
+  "B",
 ];
 
-const getNote = freq => {
+const getNote = (freq) => {
   const note = 12 * (Math.log(freq / A) / Math.log(2));
   return Math.round(note) + SEMITONE;
 };
 
-const getStandardFrequency = note => {
+const getStandardFrequency = (note) => {
   return A * Math.pow(2, (note - SEMITONE) / 12);
 };
 const getCents = (frequency, note) => {
@@ -36,15 +36,15 @@ const getCents = (frequency, note) => {
     (1200 * Math.log(frequency / getStandardFrequency(note))) / Math.log(2)
   );
 };
-export default getUserMedia({ video: false, audio: true }).then(stream => {
+export default getUserMedia({ video: false, audio: true }).then((stream) => {
   const micStream = new MicrophoneStream(stream, {
-    bufferSize: 4096
+    bufferSize: 4096,
   });
 
-  micStream.on("data", chunk => {
+  micStream.on("data", (chunk) => {
     const detectPitch = new Pitchfinder.AMDF({
       maxFrequency: 800,
-      minFrequency: 50
+      minFrequency: 50,
     });
     const pitch = detectPitch(MicrophoneStream.toRaw(chunk));
     if (pitch) {

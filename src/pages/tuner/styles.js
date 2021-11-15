@@ -23,7 +23,7 @@ export const ResultContainer = styled.div`
     5px 5px 15px 5px rgba(97, 255, 124, 0);
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(97, 255, 124, 0);
 
-  ${props => (props.tuned ? `color: #61FF7C;` : `color: #d0d7dc;`)}
+  ${(props) => (props.tuned ? `color: #61FF7C;` : `color: #d0d7dc;`)}
 `;
 
 export const NoteName = styled.span`

@@ -1,7 +1,7 @@
 /*global PitchAnalyzer:true, Float32Array:false, FFT:false */
 /*jshint undef:true node:true browser:true */
 
-PitchAnalyzer = this.PitchAnalyzer = (function() {
+PitchAnalyzer = this.PitchAnalyzer = (function () {
   var pi = Math.PI,
     pi2 = pi * 2,
     cos = Math.cos,
@@ -60,7 +60,7 @@ PitchAnalyzer = this.PitchAnalyzer = (function() {
     stabledb: -inf,
     age: 0,
 
-    toString: function() {
+    toString: function () {
       return (
         "{freq: " +
         this.freq +
@@ -82,11 +82,11 @@ PitchAnalyzer = this.PitchAnalyzer = (function() {
      * @arg {Number} freq The frequency to compare to.
      * @return {Boolean} Whether it was a match.
      */
-    matches: function(freq) {
+    matches: function (freq) {
       return abs(this.freq / freq - 1.0) < 0.05;
     },
 
-    harmonics: null
+    harmonics: null,
   };
 
   Tone.MIN_AGE = 2;
@@ -120,10 +120,10 @@ PitchAnalyzer = this.PitchAnalyzer = (function() {
      * @method Peak
      * @private
      */
-    clear: function() {
+    clear: function () {
       this.freq = Peak.prototype.freq;
       this.db = Peak.prototype.db;
-    }
+    },
   };
 
   /**
@@ -136,7 +136,7 @@ PitchAnalyzer = this.PitchAnalyzer = (function() {
    * @arg {Integer} pos The position to find the match for.
    * @return {Peak} The best matching peak.
    */
-  Peak.match = function(peaks, pos) {
+  Peak.match = function (peaks, pos) {
     var best = pos;
 
     if (peaks[pos - 1].db > peaks[best].db) best = pos - 1;
@@ -190,11 +190,11 @@ PitchAnalyzer = this.PitchAnalyzer = (function() {
      * @method PitchAnalyzer
      * @return {Number} The current peak level (db).
      */
-    getPeak: function() {
+    getPeak: function () {
       return (10.0 * log(this.peak)) / LN10;
     },
 
-    findTone: function(minFreq, maxFreq) {
+    findTone: function (minFreq, maxFreq) {
       if (!this.tones.length) {
         this.oldFreq = 0.0;
         return null;
@@ -241,7 +241,7 @@ PitchAnalyzer = this.PitchAnalyzer = (function() {
      * @method PitchAnalyzer
      * @arg {Float32Array} data The input data.
      */
-    input: function(data) {
+    input: function (data) {
       var buf = this.buffer;
       var r = this.bufRead;
       var w = this.bufWrite;
@@ -271,7 +271,7 @@ PitchAnalyzer = this.PitchAnalyzer = (function() {
      *
      * @method PitchAnalyzer
      */
-    process: function() {
+    process: function () {
       while (this.calcFFT()) this.calcTones();
     },
 
@@ -281,10 +281,10 @@ PitchAnalyzer = this.PitchAnalyzer = (function() {
      * @method PitchAnalyzer
      * @private
      */
-    mergeWithOld: function(tones) {
+    mergeWithOld: function (tones) {
       var i, n;
 
-      tones.sort(function(a, b) {
+      tones.sort(function (a, b) {
         return a.freq < b.freq ? -1 : a.freq > b.freq ? 1 : 0;
       });
 
@@ -309,7 +309,7 @@ PitchAnalyzer = this.PitchAnalyzer = (function() {
      * @method PitchAnalyzer
      * @private
      */
-    calcTones: function() {
+    calcTones: function () {
       var freqPerBin = this.sampleRate / FFT_N,
         phaseStep = (pi2 * this.step) / FFT_N,
         normCoeff = 1.0 / FFT_N,
@@ -438,7 +438,7 @@ PitchAnalyzer = this.PitchAnalyzer = (function() {
      * @private
      * @return {Boolean} Whether there was enough data to process.
      */
-    calcFFT: function() {
+    calcFFT: function () {
       var r = this.bufRead;
 
       if ((BUF_N + this.bufWrite - r) % BUF_N <= FFT_N) return false;
@@ -454,7 +454,7 @@ PitchAnalyzer = this.PitchAnalyzer = (function() {
       return true;
     },
 
-    setupFFT: function() {
+    setupFFT: function () {
       var RFFT = typeof FFT !== "undefined" && FFT;
 
       if (!RFFT) {
@@ -472,7 +472,7 @@ PitchAnalyzer = this.PitchAnalyzer = (function() {
       this.fftInput = new Float32Array(FFT_N);
     },
 
-    processFFT: function(data, wnd) {
+    processFFT: function (data, wnd) {
       var i;
 
       for (i = 0; i < data.length; i++) {
@@ -480,10 +480,10 @@ PitchAnalyzer = this.PitchAnalyzer = (function() {
       }
 
       this.rfft.simple(this.fft, this.fftInput, "real");
-    }
+    },
   };
 
-  Analyzer.mapdb = function(e) {
+  Analyzer.mapdb = function (e) {
     return e.db;
   };
 
@@ -495,7 +495,7 @@ PitchAnalyzer = this.PitchAnalyzer = (function() {
    * @static PitchAnalyzer
    * @return {Float32Array} The hamming window.
    */
-  Analyzer.calculateWindow = function() {
+  Analyzer.calculateWindow = function () {
     var i,
       w = new Float32Array(FFT_N);
 
