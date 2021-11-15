@@ -1,32 +1,41 @@
 {
+  "name": "playguitar",
+  "version": "0.1.0",
   "private": true,
-  "name": "@bgoonz/pitch",
-  "version": "1.0.0",
-  "main": "app.js",
-  "type": "module",
+  "dependencies": {
+    "fft": "^0.2.1",
+    "get-user-media-promise": "^1.1.4",
+    "microphone-stream": "^5.0.1",
+    "pitchfinder": "^2.1.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-progressbar-semicircle": "^1.2.1",
+    "react-redux": "^7.1.1",
+    "react-scripts": "3.2.0",
+    "redux": "^4.0.4",
+    "styled-components": "^4.4.0",
+    "teoria": "^2.5.0",
+    "wav-decoder": "^1.3.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "clean": "rm -rf dist",
-    "build": "esbuild src/index.ts --bundle --target=chrome58,firefox57,safari11,edge16 --outfile=dist/index.js --define:process.env.DEBUG=false --minify",
-    "watch": "esbuild src/index.ts --bundle --target=chrome58,firefox57,safari11,edge16 --outfile=dist/index.js --define:process.env.DEBUG=true --sourcemap --watch",
-    "serve": "serve -l 5001",
-    "dev": "npm run watch & npm run serve"
+    "start": "set HTTPS=true&&react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "author": "Bryan Guner <bryan.guner@gmail.com> (https://bgoonz-blog.netlify.app/)",
-  "devDependencies": {
-    "esbuild": "^0.8.47",
-    "serve": "^13.0.2",
-    "tslib": "^2.1.0",
-    "typescript": "^4.1.5"
+  "eslintConfig": {
+    "extends": "react-app"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bgoonz/pitch-detector.git"
-  },
-  "license": "AGPL-3.0-or-later",
-  "bugs": {
-    "url": "https://github.com/bgoonz/pitch-detector/issues"
-  },
-  "homepage": "https://bgoonz.com/pitch-detector",
-  "description": ""
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
