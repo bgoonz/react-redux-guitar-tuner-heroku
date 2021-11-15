@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "es2015"],
+    "target": "es2015",
+    "allowJs": true,
+    "checkJs": true,
+    "strict": true,
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "inlineSources": true,
+  },
+  "include": [
+    "vendor/**/*.d.ts",
+    "typings/**/*.d.ts",
+    "src/**/*.ts",
+  ],
+}
